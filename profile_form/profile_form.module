@@ -1,0 +1,932 @@
+<?php
+
+function profile_form_menu() {
+  $items = array();
+  
+
+$items['daily-form/%'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Daily Health Status', //page title
+    'description' => 'Daily Health Form Submission',
+    'page callback' => 'drupal_get_form', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+    'page arguments' => array('profile_daily_form',1), //put the name of the form here
+    'access callback' => TRUE
+  );
+
+$items['test-activity-chart/%'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'test-activity-chart', //page title
+    'description' => 'test-activity-chart',
+    'page callback' => 'test_activity_chart', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+    'page arguments' => array(1), //put the name of the form here
+    'access callback' => TRUE
+  );
+
+$items['foo/ajax'] = array(
+    'title' => t('foo AJAX'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'foo_ajax',
+    'access callback' => TRUE
+  );
+
+$items['test-page'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'test-activity-chart', //page title
+    'description' => 'test-activity-chart',
+    'page callback' => 'test_page', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+    //'page arguments' => array(1), //put the name of the form here
+    'access callback' => TRUE
+  );
+
+$items['test-page2'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'test-activity-chart', //page title
+    'description' => 'test-activity-chart',
+    'page callback' => 'test_page2', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+    //'page arguments' => array(1), //put the name of the form here
+    'access callback' => TRUE
+  );
+
+  return 
+
+$items;
+}
+
+
+function test_page2()
+{
+    
+    
+    /*
+    $username = 'username';
+$password = 'password';
+ 
+$context = stream_context_create(array(
+    'http' => array(
+        'header'  => "Authorization: Basic " . base64_encode("$username:$password")
+    )
+));
+$data = file_get_contents($url, false, $context);
+    */
+    
+    
+    $json_url = "http://dev-pocketcare.pantheon.io/".drupal_get_path('module', 'profile_form') . "/datafile.csv";
+$json = file_get_contents($json_url);
+$lines = explode(PHP_EOL, $json);
+$array = array();
+foreach ($lines as $line) {
+    $array[] = str_getcsv($line);
+}
+
+dpm($json);
+dpm($array);
+unset($array[0]);
+
+//$csv = array_map('str_getcsv', $json);
+//dpm($csv);
+//$data = str_getcsv($json, TRUE);
+//dpm($data);
+   
+//return theme('THEMENAME');
+
+
+$hourly=1446595600;
+for($i=1;$i<=24;$i++)
+{
+$dom = new DOMDocument('1.0', 'UTF-8');
+
+// Creates the root KML element and appends it to the root document.
+$node = $dom->createElementNS('http://earth.google.com/kml/2.1', 'kml');
+$parNode = $dom->appendChild($node);
+
+// Creates a KML Document element and append it to the KML element.
+$dnode = $dom->createElement('Document');
+$docNode = $parNode->appendChild($dnode);
+
+$count=0;
+
+$file_count=1;
+foreach($array as $value)
+{
+dpm('loop');    
+    dpm($hourly);
+    dpm($value[0]);
+    dpm($value[0]<$hourly && $value[0]>$hourly-3600);
+if($value[0]<$hourly && $value[0]>$hourly-3600){
+    dpm($count);
+    
+    
+  $node = $dom->createElement('Placemark');
+  $placeNode = $docNode->appendChild($node);
+
+  // Creates an id attribute and assign it the value of id column.
+  $placeNode->setAttribute('id', 'placemark' . $count);
+  
+  $nameNode = $dom->createElement('name',"name");
+  $placeNode->appendChild($nameNode);
+  $descNode = $dom->  createElement('magnitude', '5.9');
+  $placeNode->appendChild($descNode);
+  
+  $pointNode = $dom->createElement('Point');
+  $placeNode->appendChild($pointNode);
+  
+  
+  
+  // Creates a coordinates element and gives it the value of the lng and lat columns from the results.
+  $coorStr = $value['1'] . ','  . $value['2'];
+  $coorNode = $dom->createElement('coordinates', $coorStr);
+  $pointNode->appendChild($coorNode);
+    
+    $count++;
+}
+else{
+     
+  
+}
+
+
+
+    }
+    
+      $kmlOutput = $dom->saveXML();
+      
+header('Content-type: application/vnd.google-earth.kml+xml');
+dpm($kmlOutput);
+$file_count=$i;
+ $xml_name = $file_count.'.kml'; // xml,pdf,doc etc as you needed
+ $resul=file_unmanaged_save_data($kmlOutput, $destination = "public://".$xml_name, $replace = FILE_EXISTS_REPLACE);
+dpm($resul);
+
+    $hourly=$hourly+3600;
+    
+    
+}    
+//$kmlOutput = $dom->saveXML();
+//header('Content-type: application/vnd.google-earth.kml+xml');
+//
+// $xml_name = '1.kml'; // xml,pdf,doc etc as you needed
+// $resul=file_unmanaged_save_data($kmlOutput, $destination = "public://1.kml", $replace = FILE_EXISTS_REPLACE);
+//echo $kmlOutput;
+
+
+return 'hello';
+}
+
+function test_page()
+{
+  //  $json_url = "http://psingh28.koding.io:8983/solr/SAP/select?q=*refugee*&fl=id%2Cscore%2Crank&wt=json&indent=true&rows=100";
+//$json = file_get_contents($json_url);
+//$data = json_decode($json, TRUE);
+//dpm($data);
+    
+return theme('THEMENAME');
+    return 'hello';
+}
+
+function profile_form_theme() {
+    return array(
+        'THEMENAME' => array(
+            'render element' => 'elements',
+            'template' => 'templates/YOUR_TPL_FILE',
+        ),
+    );
+} 
+
+function foo_ajax()
+{    
+    //$slider_value = (int)$_POST['slider_value'];
+    $data=array();    
+    $data[]=array('-78.791516','42.999994');
+$data[]=array('-78.791198','43.000196');
+$data[]=array('-78.79097','43.000446');
+$data[]=array('-78.790281','43.000457');
+$data[]=array('-78.789677','43.000248');
+$data[]=array('-78.789677','43.000248');
+$data[]=array('-78.788546','43.000422');
+$data[]=array('-78.788399','43.000738');
+$data[]=array('-78.787444','43.000724');
+$data[]=array('-78.786522','43.000735');
+$data[]=array('-78.785377','43.000745');
+$data[]=array('-78.785348','42.999831');
+$data[]=array('-78.785363','42.999247');
+$data[]=array('-78.787054','42.999192');
+$data[]=array('-78.787498','42.999171');
+$data[]=array('-78.789164','42.999077');
+$data[]=array('-78.78913','42.998065');
+$data[]=array('-78.790865','42.99804');
+$data[]=array('-78.790951','42.997519');
+$data[]=array('-78.792325','42.99718');
+$data[]=array('-78.792024','42.995911');
+$data[]=array('-78.795456','42.997296');
+$data[]=array('-78.796612','42.99989');
+$data[]=array('-78.798685','42.999963');
+$data[]=array('-78.798784','43.004291');
+$data[]=array('-78.80279','43.004321');
+$data[]=array('-78.802771','43.003428');
+$data[]=array('-78.802897','43.001632');
+$data[]=array('-78.803778','42.99979');
+$data[]=array('-78.806424','42.997763');
+$data[]=array('-78.809069','42.997855');
+$data[]=array('-78.810958','42.999606');
+$data[]=array('-78.813225','43.001264');
+$data[]=array('-78.815744','43.002553');
+$data[]=array('-78.817823','43.003521');
+$data[]=array('-78.820342','43.003889');
+$data[]=array('-78.822231','43.004073');
+$data[]=array('-78.822483','43.001816');
+$data[]=array('-78.822483','42.998869');
+$data[]=array('-78.822609','42.995875');
+$data[]=array('-78.822609','42.991959');
+$data[]=array('-78.822861','42.987352');
+$data[]=array('-78.82305','42.980856');
+$data[]=array('-78.813981','42.980073');
+$data[]=array('-78.813666','42.975235');
+$data[]=array('-78.813792','42.969936');
+$data[]=array('-78.813981','42.965189');
+$data[]=array('-78.813918','42.96058');
+$data[]=array('-78.817823','42.957861');
+$data[]=array('-78.821161','42.955326');
+$data[]=array('-78.821058','42.954501');
+$data[]=array('-78.819815','42.953806');
+
+    drupal_json_output($data);
+
+    
+}
+ function test_activity_chart($page_id)
+ {
+     watchdog('dsdsdsdsdsd','<pre>'.print_r($page_id,true).'</pre>');
+//http://dev-pocketcare.pantheon.io/test-activity-chart?start=1421738000369&end=1421750000000&uid=MEID_35823905817279     
+     dpm(node_load('28387'));
+     
+     $start=$_GET['start'];
+$end=$_GET['end'];
+             dpm($start);
+     dpm($end);
+     $uidd=$_GET['uid'];
+     dpm($uidd);
+     //$uidd='MEID_35823905817279';
+     //$uidd='MEID_35823905817279';
+     //delete all nodes
+/*
+     $result= db_query("SELECT nid FROM {node} AS n WHERE n.type = 'activity'");
+foreach ($result as $record) {
+  node_delete($record->nid);
+}
+*/
+     
+     /*
+     $query = db_select('node', 'n');
+//$query->fields('n', array('nid'));
+$query->addExpression('count(field_actioncode_value)', 'actioncode_count');
+  $query->condition('n.type', 'activity');
+$query->leftjoin('field_data_field_actioncode', 'ac', 'ac.entity_id = n.nid');
+        $query->fields('ac', array('field_actioncode_value'));
+        $query->groupBy('actioncode_count');
+
+     $result = $query->execute()->fetchAll();
+     
+     dpm($results);
+     */
+     $query = db_select('node', 'n')
+  ->fields('n', array('nid'))
+  ->condition('n.type', 'activity');
+     
+  
+$query->join('field_data_field_actioncode', 'ac', 'ac.entity_id = n.nid');
+$query->join('field_data_field_text_time', 'tt', 'tt.entity_id = n.nid');
+$query->join('field_data_field_uid', 'fu', 'fu.entity_id = n.nid');
+$query->condition('tt.field_text_time_value', $start, '>='); 
+$query->condition('tt.field_text_time_value', $end, '<=');
+$query->condition('fu.field_uid_value', $uidd, '=');
+$query->fields('ac', array('field_actioncode_value'));
+$query->fields('tt', array('field_text_time_value'));
+//$query->condition('tags.field_tags_tid', $tags, 'IN');
+//$query->addExpression('count(ac.field_actioncode_value)', 'actioncode_count');
+//$query->groupBy('nid');
+//$query->orderBy('actioncode_count', 'DESC');
+$result = $query->execute()->fetchAll();
+dpm($result);
+
+$array=array();
+$caloriecontent=array();
+for ($x = 0; $x <= 10; $x++) 
+{
+$array[$x]= 1;
+$caloriecontent[$x]=0;
+}
+
+$linehead=array();
+$linerow=array();
+$linerowthreechart=array();
+$linerowvalue_proposed=array();
+$cumm=0;
+
+$calorie_consump=array();
+        $calorie_consump['0']=22;
+        $calorie_consump['1']=43;
+        $calorie_consump['2']=20;
+        $calorie_consump['3']=17;
+        $calorie_consump['4']=25;
+        $calorie_consump['5']=33;
+        $calorie_consump['7']=17;
+        $calorie_consump['8']=56; //running, 6 mph (10 min/mile) 150lbs
+$ave=0;
+        foreach($result as $value)
+{
+    $ave=$ave+18;
+    $k=3;
+    $linehead[]=date('m/d/Y H:i', ($value->field_text_time_value)/1000);
+    
+    $linerow[]=$value->field_actioncode_value;
+    $cumm=$cumm+$calorie_consump[$value->field_actioncode_value];
+    $linerowthreechart[]=$cumm;
+    $linerowvalue_proposed[]=$ave;
+    $k=$value->field_actioncode_value;
+$array[$k]++;
+$caloriecontent[$k]=$caloriecontent[$k]+$calorie_consump[$k];
+}
+     
+dpm($array);
+
+if($page_id==1)
+{
+
+     $settings['chart']['chartOne'] = array(  
+    'header' => array('IN_VEHICLE', 'ON_BICYCLE', 'ON_FOOT', 'STILL','UNKNOWN','TILTING','WALKING','RUNNING'),
+    'rows' => array(array($array['0'],$array['1'],$array['2'],$array['3'],$array['4'],$array['5'],$array['7'],$array['8'])),
+    'columns' => array('Activity Daily'),
+    'chartType' => 'PieChart',
+    'containerId' =>  'contentchart',
+    'options' => array( 
+      'forceIFrame' => FALSE, 
+      'title' => 'Activity Distribution',
+      'width' => 800,
+      'height' => 400  
+    )   
+  );
+
+}
+else if($page_id==2)
+{
+    $settings['chart']['chartOne'] = array(  
+    'header' => array('IN_VEHICLE', 'ON_BICYCLE', 'ON_FOOT', 'STILL','UNKNOWN','TILTING','WALKING','RUNNING'),
+    'rows' => array(array($caloriecontent['0'],$caloriecontent['1'],$caloriecontent['2'],$caloriecontent['3'],$caloriecontent['4'],$caloriecontent['5'],$caloriecontent['7'],$caloriecontent['8'])),
+    'columns' => array('Calorie distribution'),
+    'chartType' => 'PieChart',
+    'containerId' =>  'contentchart',
+    'options' => array( 
+      'forceIFrame' => FALSE, 
+      'title' => 'Calories Burn Distribution',
+      'width' => 800,
+      'height' => 400  
+    )   
+  );
+}
+else if($page_id==3)
+{
+     
+     $settings['chart']['chartTwo'] = array(  
+    'header' => $linehead,
+    'rows' => array($linerow),
+    'columns' => array('DetectedActivity'),
+    'chartType' => 'LineChart',
+    'containerId' =>  'line_chart1',
+    'options' => array( 
+      'forceIFrame' => FALSE, 
+      'title' => 'Activity ID by time',
+      'width' => 800,
+      'height' => 400  
+    )   
+  );
+}
+else if($page_id==4)
+{
+    $settings['chart']['chartThree'] = array(  
+    'header' => $linehead,
+    'rows' => array($linerowthreechart,$linerowvalue_proposed),
+    'columns' => array('Detected Activity Cumulative','My Proposed plan'),
+    'chartType' => 'LineChart',
+    'containerId' =>  'line_chart2',
+    'options' => array( 
+      'forceIFrame' => FALSE, 
+      'title' => 'Calorie burn cumulative',
+      'width' => 800,
+      'height' => 400  
+    )   
+  );
+    $settings['chart']['chartTwo'] = array(  
+    'header' => $linehead,
+    'rows' => array($linerow),
+    'columns' => array('DetectedActivity'),
+    'chartType' => 'LineChart',
+    'containerId' =>  'line_chart1',
+    'options' => array( 
+      'forceIFrame' => FALSE, 
+      'title' => 'Activity ID by time',
+      'width' => 800,
+      'height' => 400  
+    )   
+  );
+     
+     
+}
+else
+{
+         
+    return 'NO CHART MADE';
+    
+}
+  //Draw it.
+  draw_chart($settings);
+  return '<p>Example line chart:</p><div id="contentchart"></div><div id="line_chart2"></div><p>Example org chart:</p><div id="line_chart1" class="line_chart2"></div>';
+     
+ }
+
+function profile_daily_form($form, &$form_state,$uid) {
+  
+    
+    dpm($uid);
+    
+    $form['#prefix']='<div id="mydata">';
+    $form['#suffix']='</div>';
+          $form['#attached']['css'] = array(
+  drupal_get_path('module', 'profile_form') . '/css/custom_change.css',
+);
+
+
+$queries = array(
+  '1' => t('I have the following symtoms: (check all that apply)'),  
+);
+
+$queries_b = array(
+  '2' => t('I am feeling fine'),   
+);
+
+$queries_c = array(  
+  '3' => t('M roommate is sick'),
+  '4' => t('Someone I hang out is sick'), 
+);
+
+# the drupal checkboxes form field definition
+$date=date("l, M y",time());
+
+
+if(isset($form_state['input']['check_a']) && $form_state['input']['check_a']=='1')
+{
+    dpm("here-2");
+    if(isset($form_state['input']['last_fill']) && $form_state['input']['last_fill']=='2')
+    {
+    
+        dpm("here0");
+        $form_state['input']['check_b']=NULL;    
+        $form_state['input']['last_fill']='1';    
+    
+    }
+}
+else
+{
+   $form_state['input']['symtoms']['1']=NULL;
+    $form_state['input']['symtoms']['2']=NULL;
+    $form_state['input']['symtoms']['3']=NULL;
+    $form_state['input']['symtoms']['4']=NULL;    
+    $form_state['input']['symtoms']['5']=NULL; 
+}
+
+if(isset($form_state['input']['check_b']) && $form_state['input']['check_b']=='1')
+{   
+    dpm("here1");
+    if(isset($form_state['input']['last_fill']) && $form_state['input']['last_fill']=='1')
+    {
+        dpm("here2");
+     $form_state['input']['last_fill']='2';
+    $form_state['input']['check_a']=NULL;
+    $form_state['input']['symtoms']['1']=NULL;
+    $form_state['input']['symtoms']['2']=NULL;
+    $form_state['input']['symtoms']['3']=NULL;
+    $form_state['input']['symtoms']['4']=NULL;    
+    $form_state['input']['symtoms']['5']=NULL;
+    
+    }
+}
+
+
+
+//$form_state['input']['check_b'][2]='2';
+//$form_state['input']['check_b'][3]='3';
+  dpm($form_state);
+//if(isset($form_state['input']['check_b']['2']) && $form_state['input']['check_b']['2']=='1')
+//{
+//    $form['check_a'] = array(
+//  '#title' => t('Do you have the following symtoms or observations today('.$date.')'),
+//  '#type' => 'checkbox',
+//  '#description' => t(''),
+//  '#default_value' => 0,      
+//  '#options' => $queries,
+//    '#ajax' => array(
+//    'callback' => 'my_module_callback',
+//    'wrapper' => 'mydata',
+//    'event' => 'change',
+//    ),
+//);
+//}
+//else
+//{
+$form['check_a'] = array(
+    '#prefix'=>'<div class="check_a_heading">'.'Do you have the following symtoms or observations today('.$date.')'.'</div>',
+  //'#title' => t('Do you have the following symtoms or observations today('.$date.')'),
+    '#title' => t('I have the following symtoms:(Check all that apply)'),
+  '#type' => 'checkbox',
+  '#description' => t(''),
+   // '#default_value' => 1,
+  //'#options' => $queries,
+    '#ajax' => array(
+    'callback' => 'my_module_callback',
+    'wrapper' => 'mydata',
+    'event' => 'change',
+    ),
+);
+//}
+//dpm($form_state);
+//if(isset($form_state['input']['check_a']) && $form_state['input']['check_a']=='1')
+//{
+  //  $form_state['input']['check_b']['2']=='0';
+//}
+
+    $toppings = array(
+  '1' => t('fever'),
+  '2' => t('runny nose/congestion/sneezing'), 
+  '3' => t('coughing'),
+  '4' => t('sore throat'),
+  '5' => t('nausea/vomiting/diarrhea'),
+);
+
+# the drupal checkboxes form field definition
+$form['symtoms'] = array(
+  '#title' => t(''),
+  '#type' => 'checkboxes',
+    '#prefix'=>'<div class="symtoms_daily_form">',
+    '#suffix'=>'</div>',
+  '#description' => t(''),
+    //'#ajax' => array(
+   // 'callback' => 'my_module_callback',
+   // 'wrapper' => 'mydata',
+   // 'event' => 'change',
+   // ),
+  '#options' => $toppings,
+    '#states' => array(
+  'visible' => array(
+    ':input[name="check_a"]' => array('checked' => TRUE),
+  ),
+),
+);
+
+$form['check_b'] = array(
+  '#title' => t('I am feeling fine'),
+  '#type' => 'checkbox',
+    '#ajax' => array(
+    'callback' => 'my_module_callback',
+    'wrapper' => 'mydata',
+    'event' => 'change',
+    ),
+  '#description' => t(''),
+  //'#options' => $queries_b,
+);
+
+$form['check_c'] = array(
+  '#title' => t(''),
+  '#type' => 'checkboxes',    
+  '#description' => t(''),
+  '#options' => $queries_c,
+);
+
+
+$form['last_fill'] = array(
+    '#type' => 'hidden',
+    '#default_value' => '2',
+  );
+
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Report Health'),
+  );
+  
+  return $form;
+}
+
+function my_module_callback(&$form, &$form_state){
+  
+    $form_state['rebuild'] = true;// may have to be set because the form has not been submitted and wont be rebuilt...I think, I cant remember for sure.
+  return $form;
+}
+
+function profile_daily_form_validate($form, &$form_state) {
+}
+function profile_daily_form_submit($form, &$form_state) {
+    
+    
+    $temp_array=array();
+    $temp_array['check_a']=$form_state['input']['check_a'];
+    $temp_array['symtoms']=$form_state['input']['symtoms'];
+    $temp_array['check_b']=$form_state['input']['check_b'];
+    $temp_array['check_c']=$form_state['input']['check_c'];
+    
+    global $user;
+    
+    $node = new stdClass();  // Create a new node object
+$node->type = 'daily_health_report';  // Content type
+$node->language = LANGUAGE_NONE;  // Or e.g. 'en' if locale is enabled
+node_object_prepare($node);  //Set some default values
+ 
+$node->title = $user->name.'('.$user->uid.')('.date("Y-m-d",time()).')';
+$node->body[$node->language][0]['value'] =json_encode($temp_array);
+$node->field_user_reported[$node->language][0]['target_id']=$user->uid;
+dpm(date("Y-m-d",time()));
+$node->field_date_reported[$node->language][0]['value']=date("Y-m-d",time());
+node_save($node);       
+drupal_set_message("The form saved successfully.",$type = 'status');
+}
+
+function profile_form_form_alter(&$form, $form_state, $form_id) {
+  dpm($form_id);
+  if ($form_id == 'user_register_form') {
+       }
+  global $user;
+    if ($form_id == 'profile2_edit_user_profile_form') {
+    // �
+        $form['#attached']['css'] = array(
+  drupal_get_path('module', 'profile_form') . '/css/custom_change.css',
+);
+        if($user->uid!=1)
+        {
+        $form['profile_user_profile']['field_profile_settings']['#access']=FALSE;
+        }
+        dpm($form);
+        dpm($user);
+        $id=arg(1);
+        dpm($id);
+        $profile=profile2_load_by_user($id, $type_name = 'user_profile');
+        
+        
+        
+        dpm($profile);
+        $encoded=isset($profile->field_profile_settings['und']['0']['value'])?$profile->field_profile_settings['und']['0']['value']:'';
+        $decoded=json_decode($encoded);
+        
+        //$default=$decoded['gender'];
+        
+        $options_gender = array(
+  'male' => t('Male'),
+  'female' => t('Female'),
+);
+
+ $form['personal_basics'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('PERSONAL BASICS'),
+    '#collapsible' => TRUE, // Added
+    '#collapsed' => FALSE,  // Added
+  );        
+        
+$form['personal_basics']['gender'] = array(
+  '#type' => 'radios',
+  '#title' => t('Choose Gender'),
+    '#required'=>TRUE,
+  '#options' => $options_gender,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->gender)?$decoded->gender:'',
+);
+
+    $options_age_group = array(
+  '1' => t('18~24'),
+  '2' => t('25~64'),
+  '3' => t('above 65'),
+);
+
+$form['personal_basics']['age_group'] = array(
+  '#type' => 'radios',
+  '#title' => t('Choose age group'),
+  '#required'=>TRUE,
+  '#options' => $options_age_group,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->age_group)?$decoded->age_group:'',
+);
+
+  $options_yes_no = array(
+  'yes' => t('Yes'),
+  'no' => t('No'),  
+);
+
+$form['personal_basics']['primary_phone'] = array(
+  '#type' => 'radios',
+  '#title' => t('Is this your primary phone'),
+  '#required'=>TRUE,
+  '#options' => $options_yes_no,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->primary_phone)?$decoded->primary_phone:'',
+);
+
+$form['personal_basics']['vehicle'] = array(
+  '#type' => 'radios',
+  '#title' => t('Do you have a vehicle'),
+  '#required'=>TRUE,
+  '#options' => $options_yes_no,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->vehicle)?$decoded->vehicle:'',
+);
+
+//////
+$form['occupation_contact'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('OCCUPATION AND CONTACT'),
+    '#collapsible' => TRUE, // Added
+    '#collapsed' => FALSE,  // Added
+  );
+
+$form['occupation_contact']['affiliated_ub'] = array(
+  '#type' => 'radios',
+  '#title' => t('Affiliated with UB'),
+  '#required'=>TRUE,
+  '#options' => $options_yes_no,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->affiliated_ub)?$decoded->affiliated_ub:'',
+);
+
+
+
+$options_member_type = array(
+  '1' => t('CSE Grad    ( **Fill more below)'),
+  '2' => t('CSE Under   ( **Fill more below)'),
+  '3' => t('CSE Staff/faculty'),
+  '4' => t('All Others'),
+);
+
+
+$form['occupation_contact']['member_type_ub'] = array(
+  '#type' => 'radios',
+  '#title' => t('UB Member Type'),
+  '#required'=>TRUE,
+  '#options' => $options_member_type,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->member_type_ub)?$decoded->member_type_ub:'',
+);
+
+$form['occupation_contact']['no_of_courses'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('NO OF COURSES TAKEN (Click-Expand Here)'),
+    '#collapsible' => TRUE, // Added
+    '#collapsed' => TRUE,  // Added
+    '#states' => array(
+  'visible' => array(
+    ':input[name="member_type_ub"]' => array(array('value' => '1'),array('value'=>'2')),
+  ),
+),
+  );
+
+$options_no_of_courses = array(
+  '0' => t('0'),
+  '1' => t('1'),
+  '2' => t('2'),
+  '3' => t('3'),
+  '4' => t('4'),
+  '5' => t('5'),
+  '6' => t('>5'),
+);
+$form['occupation_contact']['no_of_courses']['monday'] = array(
+  '#type' => 'radios',
+  '#title' => t('Monday'),
+  '#required'=>TRUE,
+  '#options' => $options_no_of_courses,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->monday)?$decoded->monday:'',
+);
+$form['occupation_contact']['no_of_courses']['tuesday'] = array(
+  '#type' => 'radios',
+  '#title' => t('Tuesday'),
+  '#required'=>TRUE,
+  '#options' => $options_no_of_courses,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->tuesday)?$decoded->tuesday:'',
+);
+$form['occupation_contact']['no_of_courses']['wednesday'] = array(
+  '#type' => 'radios',
+  '#title' => t('Wednesday'),
+  '#required'=>TRUE,
+  '#options' => $options_no_of_courses,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->wednesday)?$decoded->wednesday:'',
+);
+$form['occupation_contact']['no_of_courses']['thursday'] = array(
+  '#type' => 'radios',
+  '#title' => t('Thursday'),
+  '#required'=>TRUE,
+  '#options' => $options_no_of_courses,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->thursday)?$decoded->thursday:'',
+);
+$form['occupation_contact']['no_of_courses']['friday'] = array(
+  '#type' => 'radios',
+  '#title' => t('Friday'),
+  '#required'=>TRUE,
+  '#options' => $options_no_of_courses,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->friday)?$decoded->friday:'',
+);
+
+$options_no_to_three= array(
+  '0' => t('0'),
+  '1' => t('1'),
+  '2' => t('2'),
+  '3' => t('3'),
+  '4' => t('>3'),  
+);
+
+$form['occupation_contact']['roommates'] = array(
+  '#type' => 'radios',
+  '#title' => t('Number of roommates'),
+  '#required'=>TRUE,
+  '#options' => $options_no_to_three,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->roommates)?$decoded->roommates:'',
+      '#states' => array(
+  'visible' => array(
+    ':input[name="member_type_ub"]' => array(array('value' => '1'),array('value'=>'2')),
+  ),
+),
+);
+$form['occupation_contact']['people_hang_out'] = array(
+  '#type' => 'radios',
+  '#title' => t('Number of people you hang out'),
+  '#required'=>TRUE,
+  '#options' => $options_no_to_three,
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => isset($decoded->people_hang_out)?$decoded->people_hang_out:'',
+      '#states' => array(
+  'visible' => array(
+    ':input[name="member_type_ub"]' => array(array('value' => '1'),array('value'=>'2')),
+  ),
+),
+);
+
+//////////
+$form['user_id'] = array(
+  '#type' => 'hidden',
+  '#title' => t('User Id'),
+  
+  //'#description' => t('What would you like to do on fourth down?'),
+  '#default_value' => $user->uid,
+);
+
+//unset($form['#submit']);
+$form['#submit'][] = "profile_form_profile2_submit_handler";
+//$form['#submit'][] = "profile2_form_submit_handler";
+//$form['#submit'][] = "profile2_form_submit";
+dpm($form);
+
+  }
+}
+
+function profile_form_profile2_submit_handler($form, &$form_state) {
+    dpm($form_state);       
+    $gender=$form_state['values']['gender'];
+    $age_group=$form_state['values']['age_group'];
+    $uid=$form_state['input']['user_id'];
+    $primary_phone=$form_state['values']['primary_phone'];
+    $vehicle=$form_state['input']['vehicle'];
+    $affiliated_ub=$form_state['input']['affiliated_ub'];
+    $member_type_ub=$form_state['input']['member_type_ub'];
+
+        $monday=$form_state['input']['monday'];
+    $tuesday=$form_state['values']['tuesday'];
+    $wednesday=$form_state['input']['wednesday'];
+    $thursday=$form_state['input']['thursday'];
+    $friday=$form_state['input']['friday'];
+
+    $roommates=$form_state['input']['roommates'];
+    $people_hang_out=$form_state['input']['people_hang_out'];
+    
+    $new_values=array(
+        'gender'=>$gender,  
+        'age_group'=>$age_group,
+        'primary_phone'=>$primary_phone,
+        'vehicle'=>$vehicle,
+        'affiliated_ub'=>$affiliated_ub,
+        'member_type_ub'=>$member_type_ub,
+        'monday'=>$monday,
+        'tuesday'=>$tuesday,
+        'wednesday'=>$wednesday,
+        'thursday'=>$thursday,
+        'friday'=>$friday,
+        'roommates'=>$roommates,
+        'people_hang_out'=>$people_hang_out,
+    );
+    $encoded=json_encode($new_values);
+    
+    $form_state['input']['field_profile_settings']=$encoded;
+    
+    $profile=profile2_load_by_user($uid, $type_name = 'user_profile');
+    dpm($encoded);
+    $profile->field_profile_settings['und']['0']['value']=$encoded;
+    dpm($profile);
+    $p=profile2_save($profile);
+    dpm($p);
+    $form_state['redirect']='/profile-user_profile/'.$uid.'/edit';
+    unset($_SESSION['messages']);
+    //drupal_set_message("The form updated successfully.",$type = 'status');
+}
+

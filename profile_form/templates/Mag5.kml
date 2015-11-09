@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <Document>
+        <name>2012 Earthquakes, Magnitude 5</name>
+        <atom:author>
+            <atom:name>U.S. Geological Survey</atom:name>
+        </atom:author>
+        <atom:link href="http://earthquake.usgs.gov"/>
+        <Folder>
+            <name>Magnitude 5</name>
+            <Placemark id="1">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.791116,42.997994,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="2">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.791116,42.997994,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="3">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.791116,42.997994,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="4">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.791116,42.997993,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="5">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.791116,42.997990,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="6">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.791116,42.997900,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="03">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000009,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="032">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000119,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="033">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000229,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="034">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000339,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="035">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000449,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="036">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000559,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="037">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000669,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="038">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000769,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="039">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000869,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0310">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000969,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0311">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.001069,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0312">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793190,43.001069,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="0313">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793290,43.001069,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="0314">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793390,43.001069,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="0315">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793290,43.000119,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0316">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793190,43.000119,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0317">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.793090,43.000119,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0318">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792990,43.000119,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0319">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792890,43.000119,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0320">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792790,43.000119,0</coordinates>
+                </Point>                
+            </Placemark>
+            <Placemark id="0321">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792690,43.000219,0</coordinates>
+                </Point>                
+            </Placemark>
+            <Placemark id="0322">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792590,43.000319,0</coordinates>
+                </Point>                
+            </Placemark>
+            <Placemark id="0323">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792490,43.000419,0</coordinates>
+                </Point>                
+            </Placemark>
+            <Placemark id="0324">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792390,43.000519,0</coordinates>
+                </Point>                
+            </Placemark>
+            <Placemark id="0325">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792290,43.000619,0</coordinates>
+                </Point>                
+            </Placemark>
+            <Placemark id="0326">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792190,43.000719,0</coordinates>
+                </Point>                
+            </Placemark>
+            <Placemark id="0327">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>-78.792090,43.000819,0</coordinates>
+                </Point>                
+            </Placemark>            
+            <Placemark id="041">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.790952,43.000998,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="042">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791000,43.000948,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="043">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791050,43.000898,0</coordinates>
+                </Point>
+            </Placemark>              
+            <Placemark id="044">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791100,43.000848,0</coordinates>
+                </Point>
+            </Placemark>              
+            <Placemark id="045">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791150,43.000800,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="046">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791250,43.000700,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="047">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791350,43.000600,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="048">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791450,43.000500,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="049">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791550,43.000400,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0410">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791650,43.000400,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0411">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791750,43.000400,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0412">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791850,43.000400,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0413">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.791950,43.000400,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0414">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.792050,43.000400,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="0415">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.792150,43.000400,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="0416">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.792350,43.000400,0</coordinates>
+                </Point>
+            </Placemark>  
+            <Placemark id="0417">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.792450,43.000400,0</coordinates>
+                </Point>
+            </Placemark> 
+            <Placemark id="0418">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>7.9</magnitude>
+                <Point>
+                    <coordinates>-78.792550,43.000400,0</coordinates>
+                </Point>
+            </Placemark>             
+        </Folder>
+    </Document>
+</kml>

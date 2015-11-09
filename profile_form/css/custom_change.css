@@ -1,0 +1,15 @@
+#edit-no-of-courses .fieldset-wrapper .form-item-monday,
+#edit-no-of-courses .fieldset-wrapper .form-item-tuesday,
+#edit-no-of-courses .fieldset-wrapper .form-item-wednesday,
+#edit-no-of-courses .fieldset-wrapper .form-item-thursday,
+#edit-no-of-courses .fieldset-wrapper .form-item-friday
+{
+    float: left;
+    margin-right: 10%;   
+}
+
+.symtoms_daily_form
+{
+    margin-top: -8px;
+    margin-left: 20px;
+}
